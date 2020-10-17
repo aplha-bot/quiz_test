@@ -25,7 +25,6 @@ class _ChooseSubjectsTeacherState extends State<ChooseSubjectsTeacher> {
              top: 0,
              right: 0,
              child: Image.asset("images/top_right_1.png",height: size.height*0.325,),
-
            ),
            Center(
              child: Column(

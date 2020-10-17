@@ -57,7 +57,7 @@ class _AddQuestionState extends State<AddQuestion> {
           child: Column(
             children: [
               TextFormField(
-                validator: (val)=>val.isEmpty ? 'Enter Question Url':null,
+                validator: (val)=>val.isEmpty ? 'Enter Question':null,
                 decoration: InputDecoration(
                   hintText: 'Question',
                 ),
