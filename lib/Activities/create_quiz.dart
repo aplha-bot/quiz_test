@@ -76,9 +76,9 @@ class _CreateQuizState extends State<CreateQuiz> {
           child: Column(
             children: [
               TextFormField(
-                validator: (val)=>val.isEmpty ? 'Enter Quiz Url':null,
+                validator: (val)=>val.isEmpty ? 'Enter Image Url':null,
                 decoration: InputDecoration(
-                  hintText: 'Quiz Url',
+                  hintText: 'Image Url',
                 ),
                 onChanged: (val){
                   quiImgUrl=val;
