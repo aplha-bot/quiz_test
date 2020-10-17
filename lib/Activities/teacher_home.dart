@@ -5,6 +5,8 @@ import 'package:quiz_test/homePage.dart';
 import 'package:quiz_test/services/auth.dart';
 import 'package:quiz_test/services/login.dart';
 
+import '../home_page.dart';
+
 class TeacherHome extends StatefulWidget {
   @override
   _TeacherHomeState createState() => _TeacherHomeState();
@@ -131,7 +133,7 @@ class _TeacherHomeState extends State<TeacherHome> {
               RaisedButton(
                 onPressed: () {
                   signOutGoogle().whenComplete(() => Navigator.pushReplacement(context, MaterialPageRoute(builder: (_){
-                    return HomePage();
+                    return HomePage2();
                   })));
                 },
                 color: Colors.indigo,

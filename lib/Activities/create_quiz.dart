@@ -44,12 +44,11 @@ class _CreateQuizState extends State<CreateQuiz> {
       });*/
 
       await databaseService.addQuiz2(
-          quizId, quizSubject, quiImgUrl, quizTime, quizTitle, quizDescription).then((value){
+          quizId,quiImgUrl, quizTime, quizTitle, quizDescription).then((value){
             setState(() {
               _isLoading=false;
               Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>AddQuestion(
                   quizId: quizId,
-                  quizSubject: quizSubject,
               )));
             });
       });
@@ -116,22 +115,12 @@ class _CreateQuizState extends State<CreateQuiz> {
                   quizDescription=val;
                 },
               ),
-              DropdownButtonFormField(
-                items: subjects.map((sub){
-                  return DropdownMenuItem(
-                    value: sub,
-                    child: Text(sub),
-                  );
-                }).toList(),
-                hint: Text('Chose quiz subject'),
-                onChanged: (val) =>setState(()=>quizSubject = val),
-              ),
               Spacer(),
               RaisedButton(
                 onPressed: () {
                   createQuizOnline();
                 },
-                color: Colors.blue,
+                color: Colors.indigo,
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(

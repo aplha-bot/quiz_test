@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:quiz_test/Activities/teacher_quizpage.dart';
 import 'package:quiz_test/homePage.dart';
+import 'package:quiz_test/home_page.dart';
 import 'package:quiz_test/services/auth.dart';
 import 'package:quiz_test/services/login.dart';
 
@@ -127,7 +128,7 @@ class StudentHomeState extends State<StudentHome> {
               RaisedButton(
                 onPressed: () {
                   signOutGoogle().whenComplete(() => Navigator.pushReplacement(context, MaterialPageRoute(builder: (_){
-                    return HomePage();
+                    return HomePage2();
                   })));
                 },
                 color: Colors.indigo,

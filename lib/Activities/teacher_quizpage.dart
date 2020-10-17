@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_test/Activities/choose_subject_teacher.dart';
 import 'package:quiz_test/Activities/create_quiz.dart';
 import 'package:quiz_test/Activities/play_quiz.dart';
 import 'package:quiz_test/services/database.dart';
 
 class TeacherQuiz extends StatefulWidget {
-  /*final String quizSubject;
-
-  TeacherQuiz(this.quizSubject);*/
   @override
   _TeacherQuizState createState() => _TeacherQuizState();
 }
 
 class _TeacherQuizState extends State<TeacherQuiz> {
-
   Stream quizStream;
   DatabaseService databaseService = new DatabaseService();
 
@@ -41,7 +38,9 @@ class _TeacherQuizState extends State<TeacherQuiz> {
 
   @override
   void initState() {
-    databaseService.getQuizzesData().then((val){
+    databaseService.getQuizzesData(
+      quizSubject
+    ).then((val){
       setState(() {
         quizStream=val;
       });
@@ -85,7 +84,7 @@ class QuizTile extends StatelessWidget {
       onTap:() {
         Navigator.push(context, MaterialPageRoute(builder: (context)
           => PlayQuiz(
-            quizId
+            quizId: quizId,
           )));
       },
       child: Container(

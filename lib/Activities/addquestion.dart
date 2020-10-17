@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:quiz_test/services/database.dart';
 
 class AddQuestion extends StatefulWidget {
-  final String quizId,quizSubject;
+  final String quizId;
 
-  AddQuestion({this.quizId,this.quizSubject});
+  AddQuestion({this.quizId});
   @override
   _AddQuestionState createState() => _AddQuestionState();
 }
@@ -30,7 +30,7 @@ class _AddQuestionState extends State<AddQuestion> {
         'option3':option3,
         'option4':option4,
       };
-      await databaseService.addQuestionData(questionMap, widget.quizId,widget.quizSubject).then((value){
+      await databaseService.addQuestionData(questionMap, widget.quizId).then((value){
         setState(() {
           _isLoading=false;
         });
@@ -120,7 +120,7 @@ class _AddQuestionState extends State<AddQuestion> {
                       uploadQuestionData();
                       Navigator.pop(context);
                     },
-                    color: Colors.blue,
+                    color: Colors.indigo,
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
@@ -137,7 +137,7 @@ class _AddQuestionState extends State<AddQuestion> {
                     onPressed: () {
                       uploadQuestionData();
                     },
-                    color: Colors.blue,
+                    color: Colors.indigo,
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(

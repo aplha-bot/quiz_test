@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:quiz_test/Activities/choose_subject_teacher.dart';
 import 'package:quiz_test/services/auth.dart';
 
 class DatabaseService {
@@ -24,9 +25,9 @@ class DatabaseService {
     });
   }
 
-  Future <void>addQuiz2(String quizId,String sub,String imgUrl ,String time, String title, String des) async
+  Future <void>addQuiz2(String quizId,String imgUrl ,String time, String title, String des) async
   {
-    await Firestore.instance.collection(sub)
+    await Firestore.instance.collection(quizSubject)
         .doc(quizId)
         .setData({
       'imgUrl': imgUrl,
@@ -37,7 +38,7 @@ class DatabaseService {
         .catchError((e){print(e.toString());});
   }
 
-  Future<void> addQuestionData(Map questionData, String quizId,String quizSubject) async {
+  Future<void> addQuestionData(Map questionData, String quizId) async {
     await Firestore.instance
         .collection(quizSubject)
         .document(quizId)
@@ -48,13 +49,13 @@ class DatabaseService {
     });
   }
 
-  getQuizzesData() async {
-    return await Firestore.instance.collection('English').snapshots();
+  getQuizzesData(String quizSubject) async {
+    return await Firestore.instance.collection(quizSubject).snapshots();
   }
 
   getQuizData(String quizId) async {
     return await Firestore.instance
-        .collection('English')
+        .collection(quizSubject)
         .document(quizId)
         .collection('QNA')
         .getDocuments();
