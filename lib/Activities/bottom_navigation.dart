@@ -1,6 +1,7 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:quiz_test/Activities/create_quiz.dart';
 import 'package:quiz_test/Activities/leader_board.dart';
 import 'package:quiz_test/Activities/teacher_home.dart';
 import 'package:quiz_test/Activities/teacher_profile.dart';
@@ -17,6 +18,7 @@ class _BottomNaviHomeState extends State<BottomNaviHome> {
   int pageIndex = 0;
   final TeacherProfile _teacherProfile = TeacherProfile();
   final TeacherQuiz _teacherQuiz = TeacherQuiz();
+  final CreateQuiz _createQuiz = CreateQuiz();
   final LeaderBoard _leaderBoard = LeaderBoard();
 
 
@@ -32,6 +34,10 @@ class _BottomNaviHomeState extends State<BottomNaviHome> {
 
       case 1:
         return _teacherQuiz;
+        break;
+
+      case 2:
+        return _createQuiz;
         break;
 
       default:

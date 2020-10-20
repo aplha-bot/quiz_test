@@ -69,30 +69,6 @@ class _TeacherQuizState extends State<TeacherQuiz> {
         ),
         elevation: 6,
         actions: [
-          /*Card(
-            elevation: 10,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(500.0),
-            ),
-            child: ClipOval(
-              child: Material(
-                color: Colors.transparent, // button color
-                child: InkWell(
-                  splashColor: Colors.grey, // inkwell color
-                  child: SizedBox(
-                    width: 35,
-                    height: 35,
-                    child: Icon(
-                      Icons.list,
-                      color: Colors.black,
-                      size: 25,
-                    ),
-                  ),
-                  onTap: () {},
-                ),
-              ),
-            ),
-          ),*/
           Card(
             elevation: 15,
             shape: RoundedRectangleBorder(
