@@ -24,28 +24,22 @@ class _TeacherQuizState extends State<TeacherQuiz> {
       margin: EdgeInsets.symmetric(horizontal: 24),
       child: StreamBuilder(
         stream: quizStream,
-        // ignore: missing_return
         builder: (context,snapshot){
-          if (snapshot.connectionState == ConnectionState.done) {
-            print('hello');
-            if (snapshot.data == null) {
-              return Text('no data');
-            } else {
-              return ListView.builder(
-                  itemCount: snapshot.data.documents.length,
-                  itemBuilder: (context, index) {
-                    return QuizTile(
-                      imgUrl: snapshot.data.documents[index].get("imgUrl"),
-                      title: snapshot.data.documents[index].get("title"),
-                      desc: snapshot.data.documents[index].get("description"),
-                      quizId: snapshot.data.documents[index].get("uid"),
-                    );
-                  });
-            }
-          }else {
-            return CircularProgressIndicator(); // loading
+          if(snapshot.hasData){
+           return ListView.builder(
+                itemCount: snapshot.data.documents.length,
+                itemBuilder: (context,index){
+                  return QuizTile(
+                    imgUrl: snapshot.data.documents[index].get("imgUrl"),
+                    title: snapshot.data.documents[index].get("title"),
+                    desc: snapshot.data.documents[index].get("description"),
+                    quizId: snapshot.data.documents[index].get("uid"),
+                  );
+                });
+          }else{
+            return Container();
           }
-        }
+        },
       ),
     );
   }

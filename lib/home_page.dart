@@ -25,7 +25,13 @@ class _HomePage2State extends State<HomePage2> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Scaffold(
+    return _loading == true
+        ? Container(
+            child: Center(
+              child: CircularProgressIndicator(),
+            ),
+          )
+        : Scaffold(
             backgroundColor: Colors.white,
             body: Stack(
               children: [
