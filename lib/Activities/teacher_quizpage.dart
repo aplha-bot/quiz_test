@@ -102,15 +102,6 @@ class _TeacherQuizState extends State<TeacherQuiz> {
         ],
       ),
       body: quizList(),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        backgroundColor: Colors.indigo,
-        onPressed: (){
-          Navigator.push(context, MaterialPageRoute(builder: (_){
-            return CreateQuiz();
-          }));
-        },
-      ),
     );
   }
   void choiceAction(String choice){

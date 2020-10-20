@@ -61,6 +61,12 @@ class _PseudoState extends State<Pseudo> with TickerProviderStateMixin {
   }
 
   @override
+  dispose() {
+    rippleController.dispose(); // you need this
+    scaleController.dispose();
+    super.dispose();
+  }
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: PageView(
