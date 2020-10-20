@@ -24,19 +24,28 @@ class _TeacherQuizState extends State<TeacherQuiz> {
       margin: EdgeInsets.symmetric(horizontal: 24),
       child: StreamBuilder(
         stream: quizStream,
+        // ignore: missing_return
         builder: (context,snapshot){
-          return snapshot.data == null ? Container() :
-          ListView.builder(
-              itemCount: snapshot.data.documents.length,
-              itemBuilder: (context,index){
-              return QuizTile(
-                imgUrl: snapshot.data.documents[index].get("imgUrl"),
-                title: snapshot.data.documents[index].get("title"),
-                desc: snapshot.data.documents[index].get("description"),
-                quizId: snapshot.data.documents[index].get("uid"),
-              );
-              });
-        },
+          if (snapshot.connectionState == ConnectionState.done) {
+            print('hello');
+            if (snapshot.data == null) {
+              return Text('no data');
+            } else {
+              return ListView.builder(
+                  itemCount: snapshot.data.documents.length,
+                  itemBuilder: (context, index) {
+                    return QuizTile(
+                      imgUrl: snapshot.data.documents[index].get("imgUrl"),
+                      title: snapshot.data.documents[index].get("title"),
+                      desc: snapshot.data.documents[index].get("description"),
+                      quizId: snapshot.data.documents[index].get("uid"),
+                    );
+                  });
+            }
+          }else {
+            return CircularProgressIndicator(); // loading
+          }
+        }
       ),
     );
   }
@@ -70,14 +79,18 @@ class _TeacherQuizState extends State<TeacherQuiz> {
         elevation: 6,
         actions: [
           Card(
-            elevation: 15,
+            elevation: 10,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(700.0),
             ),
             color: Colors.grey[300],
             child: PopupMenuButton<String>(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(700.0),
+              ),
               icon: Icon(Icons.list,color: Colors.black45,size: 28,),
               onSelected: choiceAction,
+              offset: Offset(0, 100),
               itemBuilder: (BuildContext context){
                 return Constants.choices.map((String choice){
                   return PopupMenuItem<String>(
