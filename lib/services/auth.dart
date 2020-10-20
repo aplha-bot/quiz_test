@@ -7,6 +7,7 @@ String imageUrl='';
 final FirebaseAuth _auth = FirebaseAuth.instance;
 final GoogleSignIn googleSignIn = GoogleSignIn();
 
+// email validation and Regex
 // google
 Future<String> signInWithGoogle() async {
   await Firebase.initializeApp();

@@ -151,8 +151,6 @@ class _AddQuestionState extends State<AddQuestion> {
                   ),
                 ],
               ),
-
-
               SizedBox(height: 50,),
             ],
           ),

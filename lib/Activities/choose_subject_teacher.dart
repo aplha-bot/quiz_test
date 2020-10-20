@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:quiz_test/Activities/bottom_navigation.dart';
 import 'package:quiz_test/Activities/teacher_home.dart';
 import 'package:quiz_test/Activities/teacher_quizpage.dart';
 String quizSubject='';
@@ -88,7 +89,9 @@ class _ChooseSubjectsTeacherState extends State<ChooseSubjectsTeacher> {
           }else{
             try{
               Navigator.pushReplacement(context, MaterialPageRoute(builder: (_){
-                return TeacherQuiz();
+                return BottomNaviHome();
+
+                //initally TeacherQuiz
               }));
             }catch(e){
               print(e);
