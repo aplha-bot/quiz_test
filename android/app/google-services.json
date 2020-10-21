@@ -15,6 +15,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "483158808294-sfvipim4rlnk5sj9nbfdgcf1ousb8vc5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.quiz_test",
+            "certificate_hash": "fa519c5e046e1bde86f8a5d65900ada2a14ce662"
+          }
+        },
+        {
+          "client_id": "483158808294-ul7k8jh5vgn875jo41nio334k0i9hbcr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.quiz_test",
+            "certificate_hash": "9227bfb6d2dbec77522d5cfb1456b8b180f62db4"
+          }
+        },
+        {
           "client_id": "483158808294-thgonhc2j9ipk3ip2l370ee66ah7rn95.apps.googleusercontent.com",
           "client_type": 3
         }

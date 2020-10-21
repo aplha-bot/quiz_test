@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_test/services/database.dart';
 
+import 'bottom_navigation.dart';
+
 class AddQuestion extends StatefulWidget {
   final String quizId;
 
@@ -118,7 +120,9 @@ class _AddQuestionState extends State<AddQuestion> {
                   RaisedButton(
                     onPressed: () {
                       uploadQuestionData();
-                      Navigator.pop(context);
+                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (_){
+                        return BottomNaviHome();
+                      }));
                     },
                     color: Colors.indigo,
                     child: Padding(
