@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class OptionTile extends StatefulWidget {
   final String option, decription, correctAnswer, optionSelected;
@@ -48,8 +49,9 @@ class _OptionTileState extends State<OptionTile> {
           SizedBox(
             width: 8,
           ),
-          Text(widget.decription, style: TextStyle(
-              fontSize: 17, color: Colors.black.withOpacity(0.8),
+          Text(widget.decription, style: GoogleFonts.montserrat(
+            fontSize: 17,
+            color: Colors.black,
           ),)
         ],
       ),

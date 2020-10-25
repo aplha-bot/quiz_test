@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:quiz_test/Activities/question_type.dart';
 import 'package:quiz_test/services/database.dart';
 
+import '../constants.dart';
 import 'bottom_navigation.dart';
 
 class AddQuestion extends StatefulWidget {
@@ -41,125 +44,184 @@ class _AddQuestionState extends State<AddQuestion> {
   }
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.indigo,
-        title: Text('QuizBox'),
-        centerTitle: true,
-        iconTheme: IconThemeData(color: Colors.white),
-      ),
       body: _isLoading ? Container(
         child: Center(
           child: CircularProgressIndicator(),
         ),
       ):Form(
         key: _formKey,
-        child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 24),
-          child: Column(
-            children: [
-              TextFormField(
-                validator: (val)=>val.isEmpty ? 'Enter Question':null,
-                decoration: InputDecoration(
-                  hintText: 'Question',
+        child: SingleChildScrollView(
+          child: Container(
+            height: size.height*1.1,
+            width: size.width,
+            padding: EdgeInsets.symmetric(horizontal: 24),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                //SizedBox(height: 15,),
+                Container(
+                  height: 270,
+                  width: 270,
+                  child: Image.asset("images/single_correct.png"),
                 ),
-                onChanged: (val){
-                  question=val;
-                },
-              ),
-              SizedBox(height: 6,),
-
-              TextFormField(
-                validator: (val)=>val.isEmpty ? 'Enter Option1':null,
-                decoration: InputDecoration(
-                  hintText: 'Option1 (Correct Answer)',
-                ),
-                onChanged: (val){
-                  option1=val;
-                },
-              ),
-              SizedBox(height: 6,),
-
-              TextFormField(
-                validator: (val)=>val.isEmpty ? 'Enter Option2':null,
-                decoration: InputDecoration(
-                  hintText: 'Option2',
-                ),
-                onChanged: (val){
-                  option2=val;
-                },
-              ),
-              SizedBox(height: 6,),
-
-              TextFormField(
-                validator: (val)=>val.isEmpty ? 'Enter Option3':null,
-                decoration: InputDecoration(
-                  hintText: 'Option3',
-                ),
-                onChanged: (val){
-                  option3=val;
-                },
-              ),
-
-              SizedBox(height: 6,),
-
-              TextFormField(
-                validator: (val)=>val.isEmpty ? 'Enter Option4':null,
-                decoration: InputDecoration(
-                  hintText: 'Option4',
-                ),
-                onChanged: (val){
-                  option4=val;
-                },
-              ),
-
-              Spacer(),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  RaisedButton(
-                    onPressed: () {
-                      uploadQuestionData();
-                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (_){
-                        return BottomNaviHome();
-                      }));
-                    },
-                    color: Colors.indigo,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        'Submit',
-                        style: TextStyle(fontSize: 20, color: Colors.white),
-                      ),
-                    ),
-                    elevation: 5,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(40)),
+                SizedBox(height: 6,),
+                TextFormField(
+                  validator: (val)=>val.isEmpty ? 'Enter Question':null,
+                  decoration: kTextFieldDecoration.copyWith(
+                    prefixIcon: Icon(Icons.title),
+                    labelText: 'Question',
                   ),
-                  SizedBox(width: 20,),
-                  RaisedButton(
-                    onPressed: () {
-                      uploadQuestionData();
-                    },
-                    color: Colors.indigo,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        'Add Question',
-                        style: TextStyle(fontSize: 20, color: Colors.white),
-                      ),
-                    ),
-                    elevation: 5,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(40)),
+                  onChanged: (val){
+                    question=val;
+                  },
+                ),
+                SizedBox(height: 6,),
+
+                TextFormField(
+                  validator: (val)=>val.isEmpty ? 'Enter Option1':null,
+                  decoration: kTextFieldDecoration.copyWith(
+                    prefixIcon: Icon(Icons.adjust),
+                    labelText: 'Option1 (Correct Answer)',
                   ),
-                ],
-              ),
-              SizedBox(height: 50,),
-            ],
+                  onChanged: (val){
+                    option1=val;
+                  },
+                ),
+                SizedBox(height: 6,),
+
+                TextFormField(
+                  validator: (val)=>val.isEmpty ? 'Enter Option2':null,
+                  decoration: kTextFieldDecoration.copyWith(
+                    prefixIcon: Icon(Icons.adjust),
+                    labelText: 'Option2',
+                  ),
+                  onChanged: (val){
+                    option2=val;
+                  },
+                ),
+                SizedBox(height: 6,),
+
+                TextFormField(
+                  validator: (val)=>val.isEmpty ? 'Enter Option3':null,
+                  decoration: kTextFieldDecoration.copyWith(
+                    prefixIcon: Icon(Icons.adjust),
+                    labelText: 'Option3',
+                  ),
+                  onChanged: (val){
+                    option3=val;
+                  },
+                ),
+
+                SizedBox(height: 6,),
+
+                TextFormField(
+                  validator: (val)=>val.isEmpty ? 'Enter Option4':null,
+                  decoration: kTextFieldDecoration.copyWith(
+                    prefixIcon: Icon(Icons.adjust),
+                    labelText: 'Option4',
+                  ),
+                  onChanged: (val){
+                    option4=val;
+                  },
+                ),
+                SizedBox(height: 15,),
+                //Spacer(),
+                Container(
+                  //height: size.height*0.25,
+                  width: size.width,
+                  child: SingleChildScrollView(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        GestureDetector(
+                          onTap: (){
+                            uploadQuestionData();
+                            if(option1!=null && option2!=null && option3!=null && option4!=null){
+                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (_){
+                                return BottomNaviHome();
+                              }));
+                            }
+                          },
+                          child: Container(
+                            width: size.width*0.25,
+                            decoration: const BoxDecoration(
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black45,
+                                  offset: Offset(0.0, 1.0), //(x,y)
+                                  blurRadius: 9.0,
+                                ),
+                              ],
+                              borderRadius: BorderRadius.all(Radius.circular(35.0)),
+                              gradient: LinearGradient(
+                                colors: <Color>[
+                                  Color(0xFF0D47A1),
+                                  Color(0xFF1976D2),
+                                  Color(0xFF42A5F5),
+                                ],
+                              ),
+                            ),
+                            padding: const EdgeInsets.all(10.0),
+                            child:
+                            Text('Submit',  textAlign: TextAlign.center,style: GoogleFonts.gabriela(
+                                fontSize: 22,
+                                color: Colors.white),
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: 20,),
+                        GestureDetector(
+                          onTap: (){
+                            uploadQuestionData();
+                            if(option1!=null && option2!=null && option3!=null && option4!=null) {
+                              Navigator.pushReplacement(
+                                  context, MaterialPageRoute(builder: (_) {
+                                return QuestionType(
+                                  quizId: widget.quizId,
+                                );
+                              }));
+                            }
+                          },
+                          child: Container(
+                            width: size.width*0.45,
+                            decoration: const BoxDecoration(
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black45,
+                                  offset: Offset(0.0, 1.0), //(x,y)
+                                  blurRadius: 9.0,
+                                ),
+                              ],
+                              borderRadius: BorderRadius.all(Radius.circular(35.0)),
+                              gradient: LinearGradient(
+                                colors: <Color>[
+                                  Color(0xFF0D47A1),
+                                  Color(0xFF1976D2),
+                                  Color(0xFF42A5F5),
+                                ],
+                              ),
+                            ),
+                            padding: const EdgeInsets.all(10.0),
+                            child:
+                            Text('Add Question',  textAlign: TextAlign.center,style: GoogleFonts.gabriela(
+                                fontSize: 22,
+                                color: Colors.white),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                //SizedBox(height: 50,),
+              ],
+            ),
           ),
         ),
       ),
     );
   }
 }
+

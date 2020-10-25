@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:quiz_test/Activities/bottom_navigation.dart';
 import 'package:quiz_test/Activities/teacher_quizpage.dart';
 import 'package:quiz_test/homePage.dart';
 import 'package:custom_navigator/custom_scaffold.dart';
@@ -14,23 +16,21 @@ class Results extends StatefulWidget {
 
 class _ResultsState extends State<Results> {
 
-  int _currentIndex=0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Test Result'),
-        centerTitle: true,
-        actions: [
-          Icon(Icons.favorite),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 60),
-            //child: Icon(Icons.search),
+        backgroundColor: Colors.white70,
+        title:  Text(
+          'Result',
+          style: GoogleFonts.aBeeZee(
+            color: Colors.black,
+            fontSize: 30,
+            fontWeight: FontWeight.w400,
           ),
-          //Icon(Icons.more_vert),
-        ],
-        backgroundColor: Colors.indigo,
+        ),
+        centerTitle: true,
       ),
       body: Container(
         height: MediaQuery.of(context).size.height,
@@ -38,26 +38,38 @@ class _ResultsState extends State<Results> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text("${widget.correct}/${widget.total}\n",style: TextStyle(
+              Container(
+                height: 270,
+                width: 270,
+                child: Image.asset("images/done.png"),
+              ),
+              SizedBox(height: 10,),
+              Text("${widget.correct} / ${widget.total}\n",style: GoogleFonts.montserrat(
+                fontSize: 30,
+                color: Colors.blueAccent,
+              ),),
+              SizedBox(height: 5,),
+              Text("You answered ${widget.correct} answers correctly \n and"
+                  "\n${widget.incorrect} answers incorrectly",style: GoogleFonts.montserrat(
                 fontSize: 20,
                 color: Colors.black,
-              ),),
-              SizedBox(height: 8,),
-              Text("You answered ${widget.correct} answers correctly \n and"
-                  "\n${widget.incorrect} answers incorrectly",style: TextStyle(
-                fontSize:20,color: Colors.black
               ),textAlign: TextAlign.center,),
-              SizedBox(height: 14,),
+              SizedBox(height: 17,),
               RaisedButton(
                 onPressed: () {
-                  Navigator.pop(context);
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (_){
+                    return BottomNaviHome();
+                  }));
                 },
                 color: Colors.indigo,
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
-                    'Go to home',
-                    style: TextStyle(fontSize: 25, color: Colors.white),
+                    'Go to dashboard',
+                    style: GoogleFonts.gabriela(
+                      fontSize: 20,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
                 elevation: 5,

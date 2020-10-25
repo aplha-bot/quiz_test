@@ -7,8 +7,6 @@ class DatabaseService {
     await Firestore.instance
         .collection('Users')
         .document(name + '??')
-        .collection(name)
-        .document(id)
         .setData(quizData)
         .catchError((e) {
       print(e.toString());
@@ -59,5 +57,12 @@ class DatabaseService {
         .document(quizId)
         .collection('QNA')
         .getDocuments();
+  }
+
+  getRegisterData() async {
+    return await Firestore.instance
+        .collection("Users").getDocuments().catchError((e) {
+      print(e.toString());
+    });
   }
 }

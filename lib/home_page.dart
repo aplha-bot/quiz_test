@@ -103,7 +103,9 @@ class _HomePage2State extends State<HomePage2> {
                         signInWithGoogle().then((value) {
                           Navigator.pushReplacement(context,
                               MaterialPageRoute(builder: (_) {
-                            return ChooseSubjectsTeacher();
+                            return Minion();
+
+                            //ChooseSubjectsTeacher ,previously
                           }));
                           setState(() {
                             _loading = false;

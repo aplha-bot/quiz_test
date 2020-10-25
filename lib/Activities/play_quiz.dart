@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:quiz_test/Activities/result.dart';
 import 'package:quiz_test/modals/question_modal.dart';
 import 'package:quiz_test/services/database.dart';
@@ -117,13 +118,17 @@ class _PlayQuizState extends State<PlayQuiz> {
       child: Scaffold(
         appBar:
           AppBar(
-          backgroundColor: Colors.indigo,
-          title: Text('QuizBox'),
-          centerTitle: true,
-          iconTheme: IconThemeData(color: Colors.white),
-
+            backgroundColor: Colors.white70,
+           title:  Text(
+              'Quiz',
+              style: GoogleFonts.montserrat(
+                color: Colors.black,
+                fontSize: 30,
+                fontWeight: FontWeight.w400,
+              ),
+            ),
             actions: [
-              Icon(Icons.timer),
+              Icon(Icons.timer,color: Colors.indigo,),
               SizedBox(width: 5,),
               Center(child: TweenAnimationBuilder<Duration>(
                   duration: Duration(minutes: 1),
@@ -145,7 +150,7 @@ class _PlayQuizState extends State<PlayQuiz> {
                         child: Text('$minutes:$seconds',
                             textAlign: TextAlign.center,
                             style: TextStyle(
-                                color: Colors.white,
+                                color: Colors.blueAccent,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 30)));
                   }),),
@@ -189,6 +194,7 @@ class _PlayQuizState extends State<PlayQuiz> {
           ),
         ),
         floatingActionButton: FloatingActionButton(
+          backgroundColor: Colors.indigoAccent,
           child: Icon(Icons.check),
           onPressed: (){
             Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){
@@ -276,9 +282,12 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
                 horizontal: 20
             ),
             child: Text(
-              "Q${widget.index + 1} ${widget.questionModel.question}",
+              "Q${widget.index + 1}. ${widget.questionModel.question}",
               style:
-              TextStyle(fontSize: 18, color: Colors.black.withOpacity(0.8)),
+              GoogleFonts.aBeeZee(
+                fontSize: 20,
+                color: Colors.black,
+              ),
             ),
           ),
           SizedBox(
@@ -306,12 +315,12 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
                 }
               }
             },
-            child: OptionTile(
-              option: "A",
+            child: widget.questionModel.option1 !=null ? OptionTile(
+              option: " ",
               decription: "${widget.questionModel.option1}",
               correctAnswer: widget.questionModel.correctOption,
               optionSelected: optionSelected,
-            ),
+            ) : Container(),
           ),
           SizedBox(
             height: 4,
@@ -338,12 +347,12 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
                 }
               }
             },
-            child: OptionTile(
-              option: "B",
+            child: widget.questionModel.option2 !=null ? OptionTile(
+              option: " ",
               decription: "${widget.questionModel.option2}",
               correctAnswer: widget.questionModel.correctOption,
               optionSelected: optionSelected,
-            ),
+            ): Container(),
           ),
           SizedBox(
             height: 4,
@@ -370,12 +379,12 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
                 }
               }
             },
-            child: OptionTile(
-              option: "C",
+            child: widget.questionModel.option3 != null ? OptionTile(
+              option: " ",
               decription: "${widget.questionModel.option3}",
               correctAnswer: widget.questionModel.correctOption,
               optionSelected: optionSelected,
-            ),
+            ) : Container(),
           ),
           SizedBox(
             height: 4,
@@ -402,12 +411,12 @@ class _QuizPlayTileState extends State<QuizPlayTile> {
                 }
               }
             },
-            child: OptionTile(
-              option: "D",
+            child: widget.questionModel.option4 != null ? OptionTile(
+              option: " ",
               decription: "${widget.questionModel.option4}",
               correctAnswer: widget.questionModel.correctOption,
               optionSelected: optionSelected,
-            ),
+            ) : Container(),
           ),
           SizedBox(
             height: 20,

@@ -50,18 +50,17 @@ class _BottomNaviHomeState extends State<BottomNaviHome> {
       bottomNavigationBar: CurvedNavigationBar(
         color: Colors.white70,
         buttonBackgroundColor: Colors.white,
-        backgroundColor: Colors.indigo,
-        //backgroundColor: Colors.indigo,
-        animationCurve: Curves.easeInBack,
+        backgroundColor: Colors.blueAccent,
+        animationCurve: Curves.decelerate,
         animationDuration: Duration(
-          milliseconds: 420,
+          milliseconds: 390,
         ),
-        height: 60,
+        height: 50,
         items: [
-          Icon(Icons.person),
-          Icon(Icons.home),
-          Icon(Icons.add_circle_outline),
-          Icon(Icons.score),
+          Icon(Icons.person,size: 20,),
+          Icon(Icons.home,size: 20,),
+          Icon(Icons.add_to_photos,size: 20,),
+          Icon(Icons.score,size: 20,),
         ],
         onTap: (index){
           setState(() {

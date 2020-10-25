@@ -6,39 +6,75 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:quiz_test/Activities/bottom_navigation.dart';
 import 'package:quiz_test/Activities/teacher_home.dart';
 import 'package:quiz_test/Activities/teacher_quizpage.dart';
+import 'package:flutter/material.dart';
+import 'package:flare_flutter/flare_actor.dart';
+import 'package:quiz_test/minion/minion_controller.dart';
+
 String quizSubject='';
 
-class ChooseSubjectsTeacher extends StatefulWidget {
+class Minion extends StatefulWidget {
   @override
-  _ChooseSubjectsTeacherState createState() => _ChooseSubjectsTeacherState();
+  _MinionState createState() => _MinionState();
 }
 
-class _ChooseSubjectsTeacherState extends State<ChooseSubjectsTeacher> {
+class _MinionState extends State<Minion> {
+  MinionController minionController;
   final List<String> subjects= ['Physics', 'Maths', 'Chemistry', 'English', 'Biology', 'Computer Science'];
+  bool _isLoading=false;
+  @override
+  void initState() {
+    super.initState();
+    minionController = MinionController();
+  }
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      body: Stack(
-         children: [
-           Positioned(
-             top: 0,
-             right: 0,
-             child: Image.asset("images/top_right_1.png",height: size.height*0.325,),
-           ),
-           Center(
-             child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+      body: _isLoading ? Container(
+        child: Center(
+          child: CircularProgressIndicator(),
+        ),
+      ) : Container(
+        child: Stack(
           children: [
-              Text("Choose Subject",
+            Positioned(
+              top: 0,
+              left: 0,
+              child: Image.asset("images/main_top.png"),
+              width: size.width * 0.5,
+            ),
+            Positioned(
+              bottom: 0,
+              right: 0,
+              child: Image.asset("images/login_bottom.png"),
+              width: size.width * 0.6,
+            ),
+            Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              SizedBox(height: 50,),
+              Text("Choose Subject",textAlign: TextAlign.center,
                 style: GoogleFonts.montserrat(
                   fontSize: 35,
                   color: Colors.indigo,
+                  fontWeight: FontWeight.w400,
                 )
                 ,),
-              Image.asset("images/choose.png",height: size.height*0.5,),
-              SizedBox(height: 50,),
+              Container(
+                height: 480,
+                width: 500,
+                child: GestureDetector(
+                  onTap: (){
+                    minionController.jump();
+                  },
+                  child: FlareActor(
+                    "images/minion.flr",
+                    controller: minionController,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
               Container(
                 //height: size.width*0.25,
                 width: size.width*0.8,
@@ -52,20 +88,21 @@ class _ChooseSubjectsTeacherState extends State<ChooseSubjectsTeacher> {
                   hint: Text(' Subjects',style: GoogleFonts.montserrat(),),
                   onChanged: (val) =>setState((){
                     quizSubject = val;
+                    minionController.dance();
                   }),
                 ),
               ),
               SizedBox(height: 25,),
-          ],
+            ],
+          ),
+        ],
         ),
-           ),
-      ],
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.navigate_next),
         backgroundColor: Colors.indigo,
         onPressed: (){
-          if(quizSubject==''){
+          if(quizSubject.isEmpty){
             Flushbar(
               padding: EdgeInsets.all(10.0),
               borderRadius: 8,
@@ -88,9 +125,9 @@ class _ChooseSubjectsTeacherState extends State<ChooseSubjectsTeacher> {
             )..show(context);
           }else{
             try{
+              minionController.jump();
               Navigator.pushReplacement(context, MaterialPageRoute(builder: (_){
                 return BottomNaviHome();
-
                 //initally TeacherQuiz
               }));
             }catch(e){
@@ -102,5 +139,6 @@ class _ChooseSubjectsTeacherState extends State<ChooseSubjectsTeacher> {
         elevation: 0.7,
       ),
     );
+
   }
 }

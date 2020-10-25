@@ -2,6 +2,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:grouped_buttons/grouped_buttons.dart';
+import 'package:quiz_test/Activities/showing_lists.dart';
 import 'package:quiz_test/services/auth.dart';
 import 'package:quiz_test/services/database.dart';
 import 'package:random_string/random_string.dart';
@@ -135,6 +136,8 @@ class _TopicRouteState extends State<TopicRoute> {
     };
 
     await databaseService.addUserTopics(quizMap, id);
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (context) => ShowingList()));
 
 
     //await databaseService.addUserTopics({"toi":topic});
